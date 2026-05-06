@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Using AI Responsibly</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0f2340;
+    --navy-mid: #1a3a5c;
+    --gold: #b8892a;
+    --gold-light: #d4a94a;
+    --cream: #f9f6f0;
+    --cream-dark: #ede8de;
+    --text: #1c1c1c;
+    --text-muted: #555;
+    --text-light: #888;
+    --rule: #c8bfb0;
+    --white: #ffffff;
+    --danger: #8b2020;
+    --success: #1a5c3a;
+    --info: #1a3a6c;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--cream);
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.75;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--navy);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 3px solid var(--gold);
+  }
+
+  .nav-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gold-light);
+    letter-spacing: 0.03em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-family: 'Source Serif 4', serif;
+    font-weight: 300;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold-light); }
+
+  /* HERO */
+  .hero {
+    background: var(--navy);
+    padding: 6rem 2rem 5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(
+        90deg,
+        rgba(184,137,42,0.04) 0px,
+        rgba(184,137,42,0.04) 1px,
+        transparent 1px,
+        transparent 80px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        rgba(184,137,42,0.04) 0px,
+        rgba(184,137,42,0.04) 1px,
+        transparent 1px,
+        transparent 80px
+      );
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(184,137,42,0.5);
+    padding: 4px 16px;
+    margin-bottom: 2rem;
+    font-family: 'Source Serif 4', serif;
+    font-weight: 300;
+    position: relative;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+    max-width: 700px;
+    margin: 0 auto 1.5rem;
+    position: relative;
+  }
+
+  .hero h1 em {
+    color: var(--gold-light);
+    font-style: italic;
+  }
+
+  .hero-sub {
+    color: rgba(255,255,255,0.65);
+    font-size: 16px;
+    max-width: 520px;
+    margin: 0 auto 3rem;
+    font-weight: 300;
+    position: relative;
+  }
+
+  .hero-rule {
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* MAIN CONTENT */
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* SECTION */
+  section {
+    padding: 5rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 300;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.3;
+    max-width: 60px;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.25;
+    margin-bottom: 1.5rem;
+  }
+
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--navy-mid);
+    margin-bottom: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  p { margin-bottom: 1.25rem; color: var(--text); }
+
+  /* PULLQUOTE */
+  .pullquote {
+    border-left: 4px solid var(--gold);
+    padding: 1.25rem 1.75rem;
+    margin: 2.5rem 0;
+    background: var(--white);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .pullquote p {
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--navy);
+    margin: 0;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  /* CARDS */
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin: 2rem 0;
+  }
+
+  @media (max-width: 600px) { .card-grid { grid-template-columns: 1fr; } }
+
+  .card {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 1.5rem;
+  }
+
+  .card-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 16px;
+  }
+
+  .card-icon.green { background: #e6f4ec; color: var(--success); }
+  .card-icon.red   { background: #f4e6e6; color: var(--danger);  }
+  .card-icon.blue  { background: #e6ecf4; color: var(--info);    }
+  .card-icon.gold  { background: #f4f0e6; color: var(--gold);    }
+
+  .card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+
+  .card p {
+    font-size: 14.5px;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* DO / DON'T */
+  .do-dont {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin: 2rem 0;
+  }
+
+  @media (max-width: 600px) { .do-dont { grid-template-columns: 1fr; } }
+
+  .do-box, .dont-box {
+    border-radius: 4px;
+    padding: 1.5rem;
+  }
+
+  .do-box {
+    background: #f0f8f3;
+    border: 1px solid #b8dac7;
+  }
+
+  .dont-box {
+    background: #fdf3f3;
+    border: 1px solid #dab8b8;
+  }
+
+  .do-box h4 {
+    color: var(--success);
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .dont-box h4 {
+    color: var(--danger);
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .do-box ul, .dont-box ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .do-box li, .dont-box li {
+    font-size: 14px;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .do-box li:last-child, .dont-box li:last-child { border-bottom: none; }
+
+  .do-box li::before { content: '✓ '; color: var(--success); font-weight: 600; }
+  .dont-box li::before { content: '✗ '; color: var(--danger); font-weight: 600; }
+
+  /* STAT ROW */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 2.5rem 0;
+  }
+
+  .stat {
+    background: var(--white);
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--navy);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 0.25rem;
+    display: block;
+  }
+
+  /* NUMBERED LIST */
+  .numbered-list {
+    list-style: none;
+    counter-reset: step;
+    margin: 2rem 0;
+  }
+
+  .numbered-list li {
+    counter-increment: step;
+    display: flex;
+    gap: 1.25rem;
+    margin-bottom: 1.75rem;
+    align-items: flex-start;
+  }
+
+  .numbered-list li::before {
+    content: counter(step, decimal-leading-zero);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gold);
+    min-width: 36px;
+    padding-top: 2px;
+    line-height: 1;
+  }
+
+  .numbered-list li div strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    color: var(--navy);
+    font-style: normal;
+    margin-bottom: 0.25rem;
+    font-size: 1.05rem;
+  }
+
+  .numbered-list li div {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  /* PROMPT TOOL */
+  .prompt-tool {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 2rem;
+    margin: 2rem 0;
+  }
+
+  .prompt-tool-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 300;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .prompt-tool textarea,
+  .prompt-tool select {
+    width: 100%;
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 16px;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    background: var(--cream);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    line-height: 1.6;
+  }
+
+  .prompt-tool textarea {
+    min-height: 80px;
+    resize: vertical;
+    margin-bottom: 1.25rem;
+  }
+
+  .prompt-tool textarea:focus,
+  .prompt-tool select:focus {
+    border-color: var(--gold);
+    background: var(--white);
+  }
+
+  .prompt-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 1rem;
+    align-items: end;
+  }
+
+  @media (max-width: 600px) {
+    .prompt-controls { grid-template-columns: 1fr; }
+  }
+
+  .prompt-tool button.enhance {
+    background: var(--navy);
+    color: var(--white);
+    border: 1px solid var(--navy);
+    padding: 0.75rem 1.75rem;
+    font-family: 'Source Serif 4', serif;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 400;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.2s;
+    height: 44px;
+    white-space: nowrap;
+  }
+
+  .prompt-tool button.enhance:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+
+  .prompt-tool button.enhance:disabled {
+    opacity: 0.5;
+    cursor: wait;
+  }
+
+  .prompt-output {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .prompt-output-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .prompt-output-text {
+    background: var(--navy);
+    color: rgba(255,255,255,0.92);
+    border-left: 3px solid var(--gold);
+    padding: 1.5rem 1.75rem;
+    border-radius: 0 3px 3px 0;
+    font-family: 'Source Serif 4', serif;
+    font-size: 16px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    font-style: italic;
+  }
+
+  .copy-btn {
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--text-muted);
+    font-family: 'Source Serif 4', serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .copy-btn:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  .prompt-loading {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    color: var(--text-light);
+    font-size: 14px;
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .prompt-loading-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    animation: pulse 1.4s ease-in-out infinite;
+  }
+
+  .prompt-loading-dot:nth-child(2) { animation-delay: 0.2s; }
+  .prompt-loading-dot:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes pulse {
+    0%, 80%, 100% { opacity: 0.3; }
+    40% { opacity: 1; }
+  }
+
+  .prompt-error {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    background: #f4e6e6;
+    border: 1px solid #dab8b8;
+    color: var(--danger);
+    border-radius: 3px;
+    font-size: 14px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 2.5rem 2rem;
+    font-size: 13px;
+    font-weight: 300;
+    border-top: 3px solid var(--gold);
+  }
+
+  footer span {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero > * { animation: fadeUp 0.7s ease both; }
+  .hero-eyebrow { animation-delay: 0.1s; }
+  .hero h1     { animation-delay: 0.25s; }
+  .hero-sub    { animation-delay: 0.4s; }
+  .hero-rule   { animation-delay: 0.55s; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="#">AI Literacy Project</a>
+    <ul class="nav-links">
+      <li><a href="#risks">The Research</a></li>
+      <li><a href="#learning">Better Use</a></li>
+      <li><a href="#tool">Try It</a></li>
+      <li><a href="#guidelines">Rules</a></li>
+      <li><a href="#sources">Sources</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <h1>Using Artificial Intelligence <em>Responsibly</em></h1>
+  <p class="hero-sub">A look at how AI is changing the way we think, and how to use it without losing the skills that make us human.</p>
+  <div class="hero-rule"></div>
+</header>
+
+<main>
+
+  <!-- INTRO -->
+  <section id="intro">
+    <p class="section-label">Introduction</p>
+    <h2>What Is AI, and Why Does It Matter?</h2>
+    <p>This project was about looking into how AI and computers impact the way we think. Do they help us think better, or do they do all the thinking for us? Based on the research, the answer is somewhere in the middle, but AI is starting to replace the thinking humans do.</p>
+    <p>One study published in 2025 tested 666 individuals of all ages. The more people used AI tools, the worse they scored on critical thinking tests. The youngest age group, 17 to 25, used the most AI and scored the lowest. Researchers call this "cognitive offloading," which is when humans let another mind (like an AI system) think for them. The researchers didn't think AI was making people less smart, just that their brains were getting out of practice at thinking for themselves.</p>
+
+    <div class="stat-row">
+      <div class="stat">
+        <span class="stat-num">666</span>
+        <span class="stat-label">people tested in MDPI critical thinking study</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">1,214</span>
+        <span class="stat-label">U.S. youth surveyed by RAND in 2025</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">60%+</span>
+        <span class="stat-label">of students worried about AI use in school</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- RISKS -->
+  <section id="risks">
+    <p class="section-label">The Research</p>
+    <h2>What Can Go Wrong</h2>
+
+    <h3>Cognitive offloading and the Google Effect</h3>
+    <p>The MDPI study found that the more people relied on AI, the lower their critical thinking scores. It's not that AI makes you dumber, it's that you stop building the mental muscle when you stop using it. Researchers compare this to the "Google Effect," where people forget information they know they can look up online. AI takes that even further by letting people skip the thinking part entirely. Another study found that moderate AI use can actually be helpful, but overusing it stops your brain from learning how to do things on its own.</p>
+
+    <h3>Hallucination</h3>
+    <p>AI doesn't actually know anything. It guesses what the answer should be based on what it has seen before. It will often make up information that sounds legitimate but is wrong, like fake quotes or wrong dates. Always double check important information against a reliable source before trusting it.</p>
+
+    <h3>What this could mean long term</h3>
+    <p>If people keep using AI the way they do now, it won't just affect grades. It could leave the next generation of students weak in the exact skills colleges and employers want. The fix isn't to avoid AI, it's to use it in a way that maximizes its benefits.</p>
+
+    <div class="pullquote">
+      <p>"By far, the greatest danger of artificial intelligence is that people conclude too early that they understand it."<br><span style="font-size: 0.9rem; font-style: normal; color: var(--text-muted); display: block; margin-top: 0.5rem;">Eliezer Yudkowsky, AI researcher</span></p>
+    </div>
+  </section>
+
+  <!-- LEARNING -->
+  <section id="learning">
+    <p class="section-label">Better Use</p>
+    <h2>Using AI to Think Better, Not Less</h2>
+
+    <h3>Ask it to explain, not just answer</h3>
+    <p>Instead of asking AI for the answer, ask it to explain how to get the answer step by step. That makes you actually engage with the reasoning instead of copying a result. Once you understand the reasoning, you can apply it to new problems.</p>
+
+    <h3>Use it to challenge your thinking</h3>
+    <p>Write out your argument, then ask AI to argue against it: "what's the best argument against this?" That's what good writers and lawyers do. The goal isn't for AI to win, it's to make your argument stronger.</p>
+
+    <div class="do-dont">
+      <div class="do-box">
+        <h4>✓ Learning-first prompts</h4>
+        <ul>
+          <li>"Explain this concept like I'm new to it"</li>
+          <li>"What's wrong with my reasoning here?"</li>
+          <li>"Give me 3 practice questions on this topic"</li>
+          <li>"What's the counterargument to what I just wrote?"</li>
+        </ul>
+      </div>
+      <div class="dont-box">
+        <h4>✗ Shortcut prompts</h4>
+        <ul>
+          <li>"Write my essay for me"</li>
+          <li>"Give me the answer to question 4"</li>
+          <li>"Summarize this book so I don't have to read it"</li>
+          <li>"What should I think about this topic?"</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMPT TOOL -->
+  <section id="tool">
+    <p class="section-label">Try It Yourself</p>
+    <h2>Turn a Shortcut Prompt Into a Learning Prompt</h2>
+    <p>One of the easiest ways to use AI well is to ask better questions. The way you ask your question will determine how useful the answer from the AI is. This tool takes a basic question from the user and turns it into a better prompt that will teach the user something new. Try one of your own:</p>
+
+    <div class="prompt-tool">
+      <label class="prompt-tool-label" for="prompt-input">Your question</label>
+      <textarea id="prompt-input" placeholder="e.g. What's the theme of The Great Gatsby?"></textarea>
+
+      <div class="prompt-controls">
+        <div>
+          <label class="prompt-tool-label" for="prompt-tone">Style</label>
+          <select id="prompt-tone">
+            <option value="educational">Educational</option>
+            <option value="analytical">Analytical</option>
+            <option value="critical-thinking">Critical thinking</option>
+            <option value="step-by-step">Step-by-step</option>
+          </select>
+        </div>
+        <div>
+          <label class="prompt-tool-label" for="prompt-depth">Depth</label>
+          <select id="prompt-depth">
+            <option value="detailed">Detailed</option>
+            <option value="concise">Concise</option>
+            <option value="comprehensive">Comprehensive</option>
+          </select>
+        </div>
+        <button class="enhance" id="prompt-btn" onclick="enhancePrompt()">Rewrite →</button>
+      </div>
+
+      <div class="prompt-loading" id="prompt-loading" style="display:none;">
+        Rewriting
+        <span class="prompt-loading-dot"></span>
+        <span class="prompt-loading-dot"></span>
+        <span class="prompt-loading-dot"></span>
+      </div>
+
+      <div class="prompt-output" id="prompt-output-wrap" style="display:none;">
+        <div class="prompt-output-header">
+          <span class="prompt-tool-label" style="margin:0;">Improved prompt</span>
+          <button class="copy-btn" id="copy-btn" onclick="copyPrompt()">Copy</button>
+        </div>
+        <div class="prompt-output-text" id="prompt-output"></div>
+      </div>
+
+      <div class="prompt-error" id="prompt-error" style="display:none;"></div>
+    </div>
+
+  </section>
+
+  <!-- GUIDELINES -->
+  <section id="guidelines">
+    <p class="section-label">Practical Rules</p>
+    <h2>How to Use AI Safely</h2>
+
+    <div class="do-dont">
+      <div class="do-box">
+        <h4>✓ Do</h4>
+        <ul>
+          <li>Verify AI facts with a real source</li>
+          <li>Be honest when AI helped with your work</li>
+          <li>Use AI as a starting point, not a final answer</li>
+          <li>Question outputs that seem too confident</li>
+          <li>Keep personal info out of AI chats</li>
+        </ul>
+      </div>
+      <div class="dont-box">
+        <h4>✗ Don't</h4>
+        <ul>
+          <li>Submit AI-written work as fully your own</li>
+          <li>Share passwords, SSNs, or financial info with AI</li>
+          <li>Treat AI opinions as objective truth</li>
+          <li>Spread AI content without checking it first</li>
+          <li>Let AI replace your own thinking</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONCLUSION -->
+  <section id="conclusion">
+    <p class="section-label">Conclusion</p>
+    <h2>The Bottom Line</h2>
+    <p>AI tools are not good or bad, they are simply tools like the internet and social media. Research shows that using AI too much can hurt your ability to think for yourself but using the tool correctly can actually help you to learn. Think of AI tools like any other tool in the world; they are simply tools to aid your efforts but you must never let them take away your individuality.</p>
+
+    <div class="pullquote">
+      <p>"The machine does not control us. We control the machine. And it is our duty to use it wisely."<br><span style="font-size: 0.9rem; font-style: normal; color: var(--text-muted); display: block; margin-top: 0.5rem;">Max Tegmark, MIT physicist and AI researcher</span></p>
+    </div>
+  </section>
+
+  <!-- SOURCES -->
+  <section id="sources">
+    <p class="section-label">Sources</p>
+    <h2>Research Cited</h2>
+
+    <ol class="numbered-list">
+      <li>
+        <div>
+          <strong>MDPI: AI tools and critical thinking</strong>
+          Tested 666 people. Found a negative correlation between AI use and critical thinking, strongest in ages 17 to 25.<br>
+          <a href="https://www.mdpi.com/2075-4698/15/1/6" style="color: var(--info); font-size: 14px;">mdpi.com/2075-4698/15/1/6</a>
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>RAND Corporation: Youth AI survey (2025)</strong>
+          Surveyed 1,214 U.S. youth ages 12 to 29. Over 60% expressed concern about AI use in school.<br>
+          <a href="https://www.rand.org/pubs/research_reports/RRA4742-1.html" style="color: var(--info); font-size: 14px;">rand.org/pubs/research_reports/RRA4742-1.html</a>
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>IE University: AI's cognitive implications</strong>
+          Compares AI-driven cognitive offloading to the "Google Effect." Notes moderate AI use can have positive effects.<br>
+          <a href="https://www.ie.edu/center-for-health-and-well-being/blog/ais-cognitive-implications-the-decline-of-our-thinking-skills/" style="color: var(--info); font-size: 14px;">ie.edu/center-for-health-and-well-being/blog/ais-cognitive-implications</a>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+</main>
+
+<footer>
+  <p>AI Literacy Project &nbsp;·&nbsp; <span>2026</span></p>
+</footer>
+
+<script>
+// Question type detection — looks for patterns in the user's input
+// Order matters: more specific types are checked first
+function detectType(q) {
+  const lower = q.toLowerCase();
+  // Most specific topical categories first
+  if (/(coding|code\b|program|programming|function|algorithm|javascript|python|java\b|html|css|react|debug)/.test(lower)) return 'coding';
+  if (/(experiment|hypothesis|chemical|reaction|biology|biological|physics|chemistry|atom|molecule|cell\b|dna|gene|photosynthesis|ecosystem)/.test(lower)) return 'science';
+  if (/(quiz|test me|practice question|review for|prepare for|study guide)/.test(lower)) return 'study';
+  if (/(write a story|story about|fiction|short story|plot for|narrative for|creative writing)/.test(lower)) return 'creative';
+  if (/(theme|symbol|symbolism|motif|metaphor|imagery|tone of|character|protagonist|narrator|literary|allegor)/.test(lower)) return 'literary';
+  if (/(poem|poetry|stanza|verse|rhyme|sonnet|haiku)/.test(lower)) return 'poetry';
+  if (/(history|historical|happened in|war\b|wwii|wwi|world war|revolution|empire|ancient|medieval|century|civil war)/.test(lower)) return 'history';
+  if (/(law\b|legal|constitution|amendment|court|supreme|right to|illegal)/.test(lower)) return 'legal';
+  if (/(persuade|persuasive|convince|argue for|argument for|debate)/.test(lower)) return 'persuasive';
+  if (/(business|marketing|startup|company|customer|revenue|profit|product strategy)/.test(lower)) return 'business';
+  // Functional categories
+  if (/(compare|comparing|difference between|differences|\bvs\b|versus|better than|which is better)/.test(lower)) return 'comparison';
+  if (/(essay|paragraph|paper|thesis|introduction paragraph|conclusion paragraph)/.test(lower)) return 'writing';
+  if (/^(write|help me write)/.test(lower)) return 'writing';
+  if (/(solve|calculate|equation|algebra|geometry|derivative|integral)/.test(lower)) return 'math';
+  if (/(opinion|think about|believe|feel about|view on|stance on)/.test(lower)) return 'opinion';
+  if (/(should i|am i supposed|is it ok|is it okay|advice|recommend|suggest)/.test(lower)) return 'advice';
+  if (/(summarize|summary|tldr|tl;dr|in short|key points|main idea)/.test(lower)) return 'summary';
+  // Generic question shapes last
+  if (/^(what is|what's|whats|define|definition of|meaning of)/.test(lower)) return 'definition';
+  if (/^(why|why is|why does|why do|why did)/.test(lower)) return 'reasoning';
+  if (/^(how|how do|how does|how to|how can|how should)/.test(lower)) return 'process';
+  if (/^(when|where|who)/.test(lower)) return 'factual';
+  if (/^(can you|could you)/.test(lower)) return 'request';
+  return 'general';
+}
+
+// Pick a random item from an array
+function pick(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+// Build the rewritten prompt
+function buildPrompt(question, type, tone, depth) {
+  const q = question.trim().replace(/\?+$/, '').replace(/^(what is|whats|what's)\s+/i, '');
+  const lowerQ = question.toLowerCase().replace(/\?+$/, '');
+
+  // Style modifiers — multiple options for variety
+  const styleVerbs = {
+    'educational': ['Walk me through', 'Explain', 'Help me understand', 'Teach me'],
+    'analytical': ['Critically analyze', 'Examine', 'Break down analytically', 'Investigate'],
+    'critical-thinking': ['Help me think through', 'Push me to question', 'Challenge me on', 'Force me to reason about'],
+    'step-by-step': ['Break down step by step', 'Take me through', 'Methodically explain', 'Sequentially walk through']
+  };
+
+  const styleIntro = pick(styleVerbs[tone] || styleVerbs.educational);
+
+  // Depth modifiers
+  const depthClauses = {
+    'detailed': [
+      'Use specific examples and clear reasoning so I can fully understand the concept.',
+      'Provide concrete examples for every claim so I can ground the abstract ideas.',
+      'Include evidence and examples that bring each point to life.'
+    ],
+    'concise': [
+      'Keep your response focused and direct, but make sure each point is well-supported.',
+      'Be concise but rigorous — every sentence should carry weight.',
+      'Stay tight and focused, but do not skip the reasoning.'
+    ],
+    'comprehensive': [
+      'Cover all important angles, including any common misconceptions or counterarguments.',
+      'Be thorough — address common objections, edge cases, and competing viewpoints.',
+      'Leave no important aspect unexamined, including challenges to your own framing.'
+    ]
+  };
+
+  const depthClause = pick(depthClauses[depth] || depthClauses.detailed);
+
+  // Type-specific templates — each type has multiple variations
+  const templates = {
+    literary: [
+      `${styleIntro} the question of ${q}, treating it as something to interpret rather than answer. Identify two or three plausible readings, evaluate the textual evidence for each, and explain which interpretation you find most defensible and why. End by asking me which reading resonates most and what evidence in the text supports my view.`,
+      `Approach ${q} not as a question with one right answer but as an interpretive puzzle. Lay out the strongest competing readings, weigh the textual evidence behind each, and identify what assumptions about the work each interpretation rests on. Then turn it back to me and ask which reading aligns with my own sense of the text.`,
+      `Treat ${q} as a question of literary craft, not just content. ${styleIntro.toLowerCase()} how the author's specific choices — language, structure, imagery, perspective — create the effect being asked about. Provide direct textual evidence and connect it back to broader themes in the work.`
+    ],
+
+    poetry: [
+      `${styleIntro} ${q} by examining the poem's form, language, and imagery as deliberate choices that create meaning. Walk through specific lines that illustrate the answer, explain why the poet chose those words rather than alternatives, and connect the technical choices to emotional or thematic effects. ${depthClause}`,
+      `Help me read ${q} the way a poet would read it — paying attention to rhythm, line breaks, sound, and imagery as deliberate tools. Pick out two or three specific moments in the poem where these techniques do important work, and explain what would be lost if those choices were different.`
+    ],
+
+    history: [
+      `Rather than just listing facts about ${q}, ${styleIntro.toLowerCase()} the underlying causes, the perspectives of different groups involved, and the long-term consequences. Identify which causes historians still debate and explain why those debates matter for how we understand the event today. ${depthClause}`,
+      `${styleIntro} ${q} from multiple historical perspectives, not just the dominant narrative. Whose voices are usually centered when this is taught, whose are missing, and how would the story change if we centered the marginalized perspectives? Use specific evidence to support your account.`,
+      `Place ${q} in its broader historical context. What was the world like immediately before, what conditions made the event possible, and what changed as a direct result? ${depthClause} End by asking me what aspect surprised me most.`
+    ],
+
+    legal: [
+      `${styleIntro} the legal principles behind ${q}, focusing on the underlying reasoning rather than just the rule itself. Explain how courts have interpreted this over time, where the principle gets contested, and what real-world cases illustrate the gray areas. Include the strongest argument someone might make against the current interpretation.`,
+      `Walk me through ${q} as a legal scholar would. What is the actual rule, what are the major cases that established it, and what arguments do reasonable lawyers make on each side of unsettled questions? Note that this is general legal information, not personalized legal advice.`
+    ],
+
+    comparison: [
+      `${styleIntro} ${q} by examining what each option does well, what each does poorly, and the specific contexts where one outperforms the other. Avoid declaring an overall winner — instead, give me a framework for deciding which is right for a given situation. ${depthClause}`,
+      `Compare ${q} along three dimensions of your choice that matter most for someone trying to decide between them. For each dimension, explain the tradeoff being made and why someone might reasonably prioritize one side over the other. End by asking me what I value most so I can apply your framework.`,
+      `Rather than just listing differences for ${q}, identify the deeper philosophical or practical disagreement that produces those differences. What underlying values or assumptions does each side commit to? When would each perspective be most useful?`
+    ],
+
+    persuasive: [
+      `Instead of just building one side of ${q}, ${styleIntro.toLowerCase()} the strongest possible argument for the position, then immediately steelman the strongest counterargument. Explain which considerations actually move the needle on this debate and what evidence would change a reasonable person's mind. ${depthClause}`,
+      `${styleIntro} ${q} by laying out three of the most compelling reasons someone takes that position, the strongest objection to each reason, and how a careful advocate would respond to those objections. End by asking what evidence I would need to see to change my own view.`
+    ],
+
+    writing: [
+      `Rather than writing this for me, ${styleIntro.toLowerCase()} how I should approach ${q}. Outline a structure, suggest which arguments are strongest, identify common pitfalls to avoid, and pose three guiding questions that would sharpen my thinking before I start writing.`,
+      `Help me plan ${q} without writing it for me. Suggest a thesis worth defending, three supporting arguments and the evidence each would require, and the strongest objection my essay should address. Then ask me what my own angle is so we can refine it together.`,
+      `Treat ${q} as a thinking exercise, not a writing assignment. Before any drafting happens, ${styleIntro.toLowerCase()} the questions I should be able to answer about my topic, the assumptions I should test, and the evidence I should gather. Push back on any answer that feels unfocused.`
+    ],
+
+    math: [
+      `Don't just solve ${q} for me. ${styleIntro} the strategy for approaching this type of problem, explain why that strategy works, then guide me through the solution one step at a time, pausing to ask if I followed the reasoning. After we finish, give me a similar problem to try on my own.`,
+      `Walk me through the structure of problems like ${q} before touching the specific numbers. What pattern is this problem asking me to recognize? What is the general method, and why does it work? Once I confirm I understand the strategy, then we can apply it to the actual problem.`,
+      `Treat ${q} as a chance to learn the underlying concept, not just get an answer. ${styleIntro.toLowerCase()} what type of problem this is, what mathematical idea it tests, and how I would recognize a similar problem in the future. Then guide me through the solution while explaining the reasoning at every step.`
+    ],
+
+    coding: [
+      `Don't just write the code for ${q}. ${styleIntro} the problem first — what is it asking, what are the inputs and outputs, and what edge cases matter? Then walk me through the algorithm in plain English before any code is written. Only after I confirm I understand the approach, show the implementation with comments explaining each part.`,
+      `Help me think about ${q} like an engineer. What is the underlying pattern this problem fits? What approaches could solve it, and what are the tradeoffs in time complexity, readability, and maintainability? Pick the approach you think is best, justify why, then show the code.`,
+      `Approach ${q} as a learning opportunity. ${styleIntro.toLowerCase()} the concept being tested, why this concept matters in real software, and a common mistake beginners make. Then guide me through writing the solution myself rather than handing me finished code.`
+    ],
+
+    science: [
+      `${styleIntro} the science behind ${q}, focusing on the underlying mechanism rather than memorizable facts. What is actually happening at a deeper level, why does this process matter, and what experiments demonstrate it? ${depthClause}`,
+      `Approach ${q} the way a scientist would. What is the current best explanation, what evidence supports it, and where does the explanation still have gaps or competing theories? End by asking me what I find most surprising or counterintuitive about the answer.`,
+      `Connect ${q} to a real-world application or observation I might have already encountered. ${styleIntro.toLowerCase()} the underlying science, then show how it manifests in something tangible — a phenomenon, a technology, or a problem we face. ${depthClause}`
+    ],
+
+    opinion: [
+      `Instead of telling me what to think about ${q}, ${styleIntro.toLowerCase()} the strongest arguments on multiple sides of the issue. Identify the underlying values that lead reasonable people to disagree, and pose two questions I should ask myself to develop my own informed position. ${depthClause}`,
+      `${styleIntro} ${q} by mapping out the strongest cases for each major position, the values each rests on, and the empirical questions where the disagreement actually lives. Refuse to take a side — instead, give me the tools to form my own view defensibly.`
+    ],
+
+    advice: [
+      `Rather than just answering ${q} with a yes or no, ${styleIntro.toLowerCase()} the considerations I should weigh. What are the upsides, what are the risks, what factors about my specific situation matter most, and what questions should I ask myself before deciding? ${depthClause}`,
+      `Treat ${q} as a decision-making exercise. Identify three or four factors that should drive the answer, explain how each cuts in different directions, and give me a framework for weighing them based on what I value most. End by asking me what my gut says and why.`
+    ],
+
+    summary: [
+      `Don't just summarize ${q} — explain how to summarize it well. What are the most important points, what would be safe to leave out, and what nuances would be lost in a short version? Then provide the summary, and tell me what to read in full if I want to understand the parts that summary necessarily flattens.`,
+      `Provide a summary of ${q}, but structure it so I learn the underlying ideas, not just the surface points. Lead with the central thesis or insight, then build out the supporting structure. End by identifying which idea is most often misunderstood from short summaries.`
+    ],
+
+    study: [
+      `Help me study ${q} actively rather than passively. Generate five questions that test conceptual understanding, not memorization. After each question, wait for my answer, then explain whether my reasoning was sound — even if my final answer was correct. ${depthClause}`,
+      `${styleIntro} ${q} by quizzing me. Start with a foundational question, then escalate based on how I answer. Identify gaps in my understanding and target them with follow-up questions until I can explain the topic in my own words.`
+    ],
+
+    creative: [
+      `Help me develop ${q} as a creative project. Don't write the final version for me — instead, ask me three questions that will sharpen my vision, suggest two unexpected directions I might not have considered, and identify the single most important choice I need to make before starting. ${depthClause}`,
+      `Approach ${q} as a creative collaborator, not a ghost writer. Ask me questions about tone, audience, and what emotional effect I want to create, then offer suggestions that respond to my answers. The work should still be mine when we finish.`
+    ],
+
+    business: [
+      `${styleIntro} ${q} by examining it from multiple stakeholder perspectives — customers, employees, competitors, and investors. What does each group care about, where do their interests conflict, and what tradeoffs is the decision actually making? ${depthClause}`,
+      `Approach ${q} the way a thoughtful operator would. What are the underlying assumptions in the question, what data would I need to validate them, and what could go wrong with the obvious answer? Push me to question my framing before answering.`
+    ],
+
+    definition: [
+      `${styleIntro} the concept of ${q}, explaining not just what it means but why it matters and how it shows up in real situations. Compare it to related ideas to clarify the boundaries, and point out one common misunderstanding people have about it. ${depthClause}`,
+      `Define ${q} both technically and intuitively. Give the formal definition, then explain it the way you would to a curious friend, and finally identify a borderline case that tests whether someone really understands the concept.`,
+      `${styleIntro} ${q} by building up from a simpler related idea I already know. Once I have the foundation, layer in the complexity, and end by giving me an example that distinguishes this concept from things it gets confused with.`
+    ],
+
+    reasoning: [
+      `Instead of just telling me ${lowerQ}, ${styleIntro.toLowerCase()} the underlying causes and reasoning behind it. Identify the key factors involved, explain how they connect, and challenge me to think about which factor matters most. ${depthClause}`,
+      `${styleIntro} ${lowerQ} by separating the proximate cause from the deeper underlying causes. What is the simple answer, and what is the more sophisticated answer once we look at the structural factors at play? End by asking me which level of explanation feels most satisfying and why.`,
+      `Treat ${lowerQ} as a question with multiple competing explanations. Lay out the strongest two or three theories, the evidence for each, and where experts disagree. Avoid forcing a single answer where the real answer is genuinely contested.`
+    ],
+
+    process: [
+      `${styleIntro} ${q.replace(/^to\s+/i, '')}, focusing on the reasoning behind each step rather than just the steps themselves. Explain why each step matters and what would go wrong if it were skipped. End by asking me a question that tests whether I actually understood the process. ${depthClause}`,
+      `Walk me through ${q.replace(/^to\s+/i, '')} but make me think at each step. After explaining what to do, ask me why we are doing it, then confirm or correct my answer. The goal is for me to internalize the logic, not just memorize the steps.`,
+      `Approach ${q.replace(/^to\s+/i, '')} as a skill I am building, not a recipe to follow. ${styleIntro.toLowerCase()} the principles that make the process work, then walk through one example carefully so I can see those principles in action. ${depthClause}`
+    ],
+
+    factual: [
+      `Help me understand ${q} in context — not just the surface fact, but the historical, cultural, or scientific background that gives it meaning. ${styleIntro.toLowerCase()} the broader story behind it and explain why this fact is significant. ${depthClause}`,
+      `Give me the answer to ${q}, but also the context that makes the answer meaningful. Why does this fact exist, what makes it noteworthy, and what common misconceptions surround it?`
+    ],
+
+    request: [
+      `Before fulfilling ${q}, help me understand what I am actually asking for. ${styleIntro} the underlying concept, the considerations I should be aware of, and the most useful framing of my request. Then provide what I asked for in a way that helps me learn from the result, not just consume it. ${depthClause}`
+    ],
+
+    general: [
+      `${styleIntro} the topic of ${q} in a way that helps me understand it deeply, not just memorize facts. Provide concrete examples, explain why this topic matters, and challenge one assumption a beginner might wrongly make about it. ${depthClause}`,
+      `Approach ${q} as a chance to teach me something I will remember. ${styleIntro.toLowerCase()} the core idea, illustrate it with a memorable example, and connect it to something I likely already know. End by asking me a question that tests whether the concept actually clicked.`,
+      `Rather than just giving me information about ${q}, ${styleIntro.toLowerCase()} how to think about it. What questions should I be asking, what assumptions should I challenge, and what would a deeper understanding look like? ${depthClause}`
+    ]
+  };
+
+  return pick(templates[type] || templates.general);
+}
+
+async function enhancePrompt() {
+  const inputEl = document.getElementById('prompt-input');
+  const input = inputEl.value.trim();
+  if (!input) {
+    inputEl.focus();
+    return;
+  }
+
+  const tone = document.getElementById('prompt-tone').value;
+  const depth = document.getElementById('prompt-depth').value;
+
+  document.getElementById('prompt-output-wrap').style.display = 'none';
+  document.getElementById('prompt-error').style.display = 'none';
+  document.getElementById('prompt-loading').style.display = 'flex';
+  document.getElementById('prompt-btn').disabled = true;
+
+  // Realistic loading delay so it feels like a real API call
+  const delay = 800 + Math.random() * 700;
+  await new Promise(r => setTimeout(r, delay));
+
+  try {
+    const type = detectType(input);
+    const result = buildPrompt(input, type, tone, depth);
+
+    document.getElementById('prompt-output').textContent = result;
+    document.getElementById('prompt-output-wrap').style.display = 'block';
+  } catch (e) {
+    document.getElementById('prompt-error').textContent = 'Something went wrong. Please try again.';
+    document.getElementById('prompt-error').style.display = 'block';
+  }
+
+  document.getElementById('prompt-loading').style.display = 'none';
+  document.getElementById('prompt-btn').disabled = false;
+}
+
+function copyPrompt() {
+  const text = document.getElementById('prompt-output').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copy-btn');
+    const original = btn.textContent;
+    btn.textContent = 'Copied';
+    setTimeout(() => { btn.textContent = original; }, 1500);
+  });
+}
+
+document.getElementById('prompt-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) enhancePrompt();
+});
+</script>
+
+</body>
+</html>
